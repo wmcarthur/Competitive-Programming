@@ -10,11 +10,11 @@ def beam(r, c):
         if (i,c) in seen:
             return seen[(i,c)]
         elif symbol == '^':
-            if c <= 0 and c >= len(grid[0]) - 1:
+            if c > 0 and c < len(grid[0]) - 1:
                 seen[(i,c)] = beam(i, c-1) + beam(i, c+1)
-            elif c <= 0:
+            elif c > 0:
                 seen[(i,c)] = beam(i, c-1)
-            elif c >= len(grid[0]) - 1:
+            elif c < len(grid[0]) - 1:
                 seen[(i,c)] = beam(i, c+1)
             return seen[(i,c)]
     return 1
