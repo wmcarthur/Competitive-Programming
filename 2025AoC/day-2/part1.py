@@ -1,4 +1,6 @@
-ranges = input().strip().split(',')
+with open('data', 'r') as data:
+    ranges = data.readline().strip().split(',')
+
 total = 0
 for range in ranges:
     start, end = range.split('-')
