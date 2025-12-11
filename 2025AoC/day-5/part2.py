@@ -1,33 +1,24 @@
 ranges = []
 ingredients = []
-l = []
-f = True
-while True:
-    try:
-        line = input().strip()
-    except:
-        break
-    
-    if line == '':
-        ranges = l
-        l = []
-        f = False
-        continue
-    if f:
-        l.append(list(map(int, line.split('-'))))
-    else:
-        l.append(int(line))
-ingredients = l
-# print(ranges)
-# print(ingredients)
-total = 0
+switch = True
+with open('data', 'r') as data:
+    for line in data.readlines():
+        if line.strip() == '':
+            switch = False
+            continue
+        if switch:
+            ranges.append(list(map(int, line.strip().split('-'))))
+        else:
+            ingredients.append(int(line.strip()))
+    lines = [line.strip() for line in data.readline()]
 
+total = 0
 for ingredient in ingredients:
     for r in ranges:
         if ingredient >= r[0] and ingredient <= r[1]:
             total += 1
             break
-print(total)
+print("Part 1:", total)
 
 orderedR = sorted(ranges, key=lambda x: x[0])
 def merge_ranges(ranges):
@@ -52,7 +43,4 @@ def count_unique_values(ranges):
     return total
 
 ranges = orderedR
-print(count_unique_values(ranges))
-
-        
-# print(len(val))
+print("Part 2:", count_unique_values(ranges))
