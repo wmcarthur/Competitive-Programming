@@ -1,38 +1,31 @@
-line = list(input())
-data = []
-for val in line:
-    data.append([val])
+values = []
+with open('data', 'r') as data:
+    for val in list(data.readline()):
+        values.append([val])
 
-while True:
-    try:
-        line = list(input())
-    except:
-        
-        break
-    
-    for idx, val in enumerate(line):
-        data[idx].append(val)
-print(data)
+    for line in list(data.readlines()):
+        for idx, val in enumerate(line):
+            values[idx].append(val)
+
 col_data = []
-for idx in range(len(data)):
+for idx in range(len(values)):
     val = ''
-    for j in range(len(data[idx])):
-        val += data[idx][j]
-        print(val)
+    for j in range(len(values[idx])):
+        val += values[idx][j]
     col_data.append(val)
-print(col_data)
 
 cleaned_data = []
 curr = []
 for vec in col_data:
     if vec.strip() == '':
-        cleaned_data.append(curr)
+        if curr:
+            cleaned_data.append(curr)
         curr = []
     else:
         curr.append(vec)
-        print()
-cleaned_data.append(curr)
-print(cleaned_data)
+if curr:
+    cleaned_data.append(curr)
+
 total = 0
 for r in cleaned_data:
     symbol = r[0][-1]
@@ -47,6 +40,5 @@ for r in cleaned_data:
             temp *= val
         elif symbol == '/':
             temp /= val
-    print(temp)
     total += temp
 print(total)

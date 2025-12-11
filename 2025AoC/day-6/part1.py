@@ -1,20 +1,14 @@
-line = input().strip().split()
-data = []
-for val in line:
-    data.append([int(val)])
+values = []
+with open('data', 'r') as data:
+    for val in data.readline().split():
+        values.append([int(val)])
 
-while True:
-    try:
-        line = input().strip().split()
-    except:
-        
-        break
-    
-    for idx, val in enumerate(line):
-        data[idx].append(val)
+    for line in data.readlines():
+        for idx, val in enumerate(line.strip().split()):
+            values[idx].append(val)
 
 total = 0
-for r in data:
+for r in values:
     temp = r[0]
     symbol = r[-1]
     vals = list(map(int,r[1:-1]))
