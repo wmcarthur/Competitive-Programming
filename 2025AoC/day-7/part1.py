@@ -31,12 +31,9 @@ def beam(r, c):
             return 
         seen.add((i,c))
     return 0
-        
-while True:
-    try: line = list(input())
-    except: break
-    
-    grid.append(line)
+
+with open('data', 'r') as data:
+    grid = [list(line.strip()) for line in data.readlines()]        
 
 for i in range(len(grid)):
     for j in range(len(grid[0])):

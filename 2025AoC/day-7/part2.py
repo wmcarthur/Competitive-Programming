@@ -18,11 +18,9 @@ def beam(r, c):
                 seen[(i,c)] = beam(i, c+1)
             return seen[(i,c)]
     return 1
-        
-while True:
-    try: line = list(input())
-    except: break
-    grid.append(line)
+
+with open('data', 'r') as data:
+    grid = [line.strip() for line in data.readlines()]        
 
 for i in range(len(grid)):
     for j in range(len(grid[0])):
